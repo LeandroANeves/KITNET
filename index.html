@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .kitnet {
+      width: calc(50% - 20px);
+      max-width: 150px;
+      height: 80px;
+      border: 1px solid #000;
+      margin: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .necessita-faxina {
+      background-color: blue;
+      color: white;
+    }
+
+    .disponivel {
+      background-color: green;
+      color: white;
+    }
+
+    .em-faxina {
+      background-color: yellow;
+      color: black;
+    }
+
+    .ocupado {
+      background-color: red;
+      color: white;
+    }
+
+    .azul {
+      background-color: blue;
+      color: white;
+    }
+
+    .amarelo {
+      background-color: yellow;
+      color: black;
+    }
+
+    .verde {
+      background-color: green;
+      color: white;
+    }
+
+    .vermelho {
+      background-color: red;
+      color: white;
+    }
+  </style>
+  <title>Kitnets</title>
+</head>
+<body>
+
+  <div class="kitnet azul" id="kitnet1" onclick="atualizarStatus('kitnet1')">Kitnet 1</div>
+  <div class="kitnet azul" id="kitnet2" onclick="atualizarStatus('kitnet2')">Kitnet 2</div>
+  <div class="kitnet azul" id="kitnet3" onclick="atualizarStatus('kitnet3')">Kitnet 3</div>
+  <div class="kitnet azul" id="kitnet4" onclick="atualizarStatus('kitnet4')">Kitnet 4</div>
+
+  <script>
+    const statusSequencia = ['azul', 'amarelo', 'verde', 'vermelho'];
+
+    function atualizarStatus(selectedKitnet) {
+      const kitnet = document.getElementById(selectedKitnet);
+
+      // Obter o índice do status atual
+      const currentIndex = statusSequencia.indexOf(
+        Array.from(kitnet.classList).find(className =>
+          statusSequencia.includes(className)
+        )
+      );
+
+      // Calcular o próximo índice na sequência
+      const nextIndex = (currentIndex + 1) % statusSequencia.length;
+
+      // Remover todas as classes de status e adicionar a próxima
+      kitnet.classList.remove(...statusSequencia);
+      kitnet.classList.add(statusSequencia[nextIndex]);
+    }
+  </script>
+</body>
+</html>
